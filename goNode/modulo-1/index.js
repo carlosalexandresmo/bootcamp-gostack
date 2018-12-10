@@ -1,19 +1,26 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const nunjucks = require('nunjucks')
+const app = express()
 
-const logMiddleware = (req, res, next) => {
-    console.log(`HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`);
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app,
+  watch: true
+})
 
-    req.AppName = 'GoNode';
+app.use(express.urlencoded({ extended: false }))
+app.set('view engine', 'njk')
 
-    return next();
-};
+const users = ['Sérgio Neto', 'Verônica Portugal', 'Gaia Regina']
 
-app.use(logMiddleware);
+app.get('/', (req, res) => res.render('list', { users }))
 
-app.get('/', (req, res) => res.send(`Bem-vinde ao ${req.AppName}, ${req.query.name}`));
+app.get('/new', (req, res) => res.render('new'))
 
-app.get('/login/:name', (req, res)=> res.json({ message: `Bem vinde, ${req.params.name}` }));
+app.post('/create', (req, res) => {
+  console.log(req.body)
+  users.push(req.body.user)
+  return res.redirect('/')
+})
 
-app.listen(3000);
-
+app.listen(3000)
