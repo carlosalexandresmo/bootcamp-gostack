@@ -1,0 +1,16 @@
+{
+  "name": "modulo-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.8",
+    "nunjucks": "^3.1.4",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.4.0"
+  }
+}
