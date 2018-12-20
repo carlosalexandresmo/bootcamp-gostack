@@ -1,9 +1,10 @@
+
 module.exports = {
   dialect: 'postgres',
-  host: '127.0.0.1',
+  host: 'localhost',
   username: 'docker',
   password: 'docker',
-  database: 'goNodeModulo2',
+  database: 'postgres',
   operatorAliases: false,
   define: {
     timestamps: true,
