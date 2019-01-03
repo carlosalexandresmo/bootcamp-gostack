@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
+const DashboardController = require('./app/controllers/DashboardController')
 const multerConfig = require('./config/multer')
 const upload = require('multer')(multerConfig)
 
@@ -25,8 +26,5 @@ routes.use('/app', authMiddleware)
 
 routes.get('/app/logout', SessionController.destroy)
 
-routes.get('/app/dashboard', (req, res) => {
-  console.log(req.session.user)
-  res.render('dashboard')
-})
+routes.get('/app/dashboard', DashboardController.index)
 module.exports = routes
