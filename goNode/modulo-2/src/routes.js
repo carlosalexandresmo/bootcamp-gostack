@@ -3,11 +3,14 @@ const routes = express.Router()
 const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
 const DashboardController = require('./app/controllers/DashboardController')
+const FileController = require('./app/controllers/FileController')
 const multerConfig = require('./config/multer')
 const upload = require('multer')(multerConfig)
 
 const authMiddleware = require('./app/middlewares/auth')
 const guestMiddleware = require('./app/middlewares/guest')
+
+routes.get('/files/:file', FileController.show)
 
 routes.use((req, res, next) => {
   res.locals.flashSuccess = req.flash('sucess')
